@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:musli/firebase_options.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -53,40 +51,41 @@ class _RegisterViewState extends State<RegisterView> {
     }
   }
 
+  void navigate() {
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/login/', (route) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Register')),
-      body: FutureBuilder(
-        future: Firebase.initializeApp(
-            options: DefaultFirebaseOptions.currentPlatform),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState != ConnectionState.done) {
-            return const Text("Loading...");
-          }
-
-          return Column(children: [
-            TextField(
-              controller: _email,
-              enableSuggestions: false,
-              autocorrect: false,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(hintText: 'Eneter email'),
-            ),
-            TextField(
-              controller: _password,
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-              decoration: const InputDecoration(hintText: 'Eneter password'),
-            ),
-            TextButton(
-              onPressed: register,
-              child: const Text("Register"),
-            )
-          ]);
-        },
+      appBar: AppBar(
+        title: const Text('Register'),
       ),
+      body: Column(children: [
+        TextField(
+          controller: _email,
+          enableSuggestions: false,
+          autocorrect: false,
+          keyboardType: TextInputType.emailAddress,
+          decoration: const InputDecoration(hintText: 'Eneter email'),
+        ),
+        TextField(
+          controller: _password,
+          obscureText: true,
+          enableSuggestions: false,
+          autocorrect: false,
+          decoration: const InputDecoration(hintText: 'Eneter password'),
+        ),
+        TextButton(
+          onPressed: register,
+          child: const Text("Register"),
+        ),
+        TextButton(
+          onPressed: navigate,
+          child: const Text('Already registred? Login here!'),
+        )
+      ]),
     );
   }
 }
