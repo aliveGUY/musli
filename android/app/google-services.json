@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "148096367563",
+    "project_id": "musli-note-flutter-app",
+    "storage_bucket": "musli-note-flutter-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148096367563:android:865067099d6d6a35d8144e",
+        "android_client_info": {
+          "package_name": "com.dubrovinonline.musli"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjTW8vkOPmVnsxTjRcduj5s4VkAQM58Ik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
