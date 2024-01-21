@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:musli/firebase_options.dart';
 import 'package:musli/views/login_view.dart';
 import 'package:musli/views/register_vew.dart';
+import 'package:musli/views/verify_email_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,14 +35,14 @@ class HomePage extends StatelessWidget {
         if (snapshot.connectionState != ConnectionState.done) {
           return const CircularProgressIndicator();
         }
-        // final user = FirebaseAuth.instance.currentUser;
-        // print(user);
+        final emailVerified = FirebaseAuth.instance.currentUser?.emailVerified;
 
-        // if (user?.emailVerified ?? false) {
-        //   print('You are verified user');
-        // } else {
-        //   return const VerifyEmailView();
-        // }
+        if (emailVerified != null) {
+          if (emailVerified) {
+            return const Text('Done');
+          }
+          return const VerifyEmailView();
+        }
 
         return const LoginView();
       },
